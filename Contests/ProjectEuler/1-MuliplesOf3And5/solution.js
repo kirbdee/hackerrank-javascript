@@ -79,9 +79,12 @@ var multipleSum = function(number){
     highest5 = number - (number % 5);
   }
 
-  var sum3 = ((highest3+lowest3)*highest3/lowest3)/2;
+  var sum3 = number > 3 ? ((highest3+lowest3)*highest3/lowest3)/2 : 0;
   var sum15 = number > 15 ? ((highest15+lowest15)*highest15/lowest15)/2 : 0;
-  var sum5 = ((highest5+lowest5)*highest5/lowest5)/2;
+  var sum5 = number > 5 ? ((highest5+lowest5)*highest5/lowest5)/2 : 0;
+  console.log(sum3);
+  console.log(sum5);
+  console.log(sum15);
   return (sum3+sum5-sum15);
 }
 
