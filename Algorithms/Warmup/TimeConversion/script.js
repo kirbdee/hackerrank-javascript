@@ -1,3 +1,5 @@
+// tested on HackerRank - passed all test cases
+
 function processData(input){
 
 	var pmTime;
@@ -9,6 +11,8 @@ function processData(input){
 
 	if (isAM > 0){
 		amTime = getTime(input,isAM);
+		
+		// corner case #1
 		if(amTime[0] == '12'){
 			amTime[0] = '00';
 			answer = joinTime(amTime);
@@ -20,13 +24,20 @@ function processData(input){
 		if(pmTime[0] == '12'){
 			answer = joinTime(pmTime);
 		}else{
+			// corner case #2
 			pmHour = parseInt(pmTime[0]) + 12;
 			pmTime[0] = pmHour; 
 			answer = joinTime(pmTime);
 		}
 	}
-	process.stdout.write(answer);
+	process.stdout.write(answer); // return
 }
+
+/*
+*
+*  Taking off the AM/PM 
+*  splitting the string up into an array
+*/
 
 function getTime(input,index){
 	var timeString = input.substring(0,index);
@@ -35,8 +46,13 @@ function getTime(input,index){
 	return timeArray;
 }
 
+/*
+*
+*  Joining the array back into a string
+*  
+*/
+
 function joinTime(newTimeArray){
 	return newTimeArray.join(':');
 }
 
-console.log(processData('05:59:00AM'));
