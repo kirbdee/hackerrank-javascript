@@ -42,31 +42,16 @@ process.stdin.on("end", function () {
  */
 var main = function () {
   var number = _readLine();
-  var arr = _readLine();
-  arr = _parseIntArray(arr);
 
-  //console.log("Num",number);
-  //console.log("Arr",arr);
-  var positive = 0;
-  var zero = 0;
-  var negative = 0;
-  for(key in arr){
-    switch(true) {
-      case (arr[key] === 0):
-        zero++;
-        break;
-      case (arr[key] < 0):
-        negative++;
-        break;
-      case (arr[key] > 0):
-        positive++;
-        break;
-    }
+  var arr = new Array(number);
+  for(var i = 0; i < number; i++){
+    arr[i] = ' ';
   }
-
-  console.log((positive/arr.length).toFixed(3));
-  console.log((negative/arr.length).toFixed(3));
-  console.log((zero/arr.length).toFixed(3));
+  for(var i = 0; i < number; i++){
+    arr[number-1-i] = '#';
+    var str = arr.join('');
+    console.log(str);
+  }
 };
 
 /*

@@ -32,7 +32,7 @@ process.stdin.on("end", function () {
   /*
    *  Call main()
    */
-  main();
+  console.log(main());
 
 });
 
@@ -41,32 +41,23 @@ process.stdin.on("end", function () {
  *  Do all work here
  */
 var main = function () {
-  var number = _readLine();
-  var arr = _readLine();
-  arr = _parseIntArray(arr);
+  var actual = _readLine();
+  var expected = _readLine();
+  actual = _parseIntArray(actual);
+  expected = _parseIntArray(expected);
 
-  //console.log("Num",number);
-  //console.log("Arr",arr);
-  var positive = 0;
-  var zero = 0;
-  var negative = 0;
-  for(key in arr){
-    switch(true) {
-      case (arr[key] === 0):
-        zero++;
-        break;
-      case (arr[key] < 0):
-        negative++;
-        break;
-      case (arr[key] > 0):
-        positive++;
-        break;
-    }
+  if(actual[2] > expected[2]){
+    return 10000;
+  }
+  if(actual[1] > expected[1] && actual[2] == expected[2]){
+    return (actual[1] - expected[1]) * 500;
+  }
+  if(actual[0] > expected[0] && actual[1] == expected[1] && actual[2] == expected[2]){
+    return (actual[0] - expected[0]) * 15;
   }
 
-  console.log((positive/arr.length).toFixed(3));
-  console.log((negative/arr.length).toFixed(3));
-  console.log((zero/arr.length).toFixed(3));
+  return 0;
+
 };
 
 /*

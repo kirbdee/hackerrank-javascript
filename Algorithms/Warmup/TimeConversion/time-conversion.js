@@ -41,39 +41,30 @@ process.stdin.on("end", function () {
  *  Do all work here
  */
 var main = function () {
-  var number = _readLine();
-  var arr = _readLine();
-  arr = _parseIntArray(arr);
+  var date = _readLine();
+  var apm = date.substr(8,2);
+  date = date.substr(0,8);
 
-  //console.log("Num",number);
-  //console.log("Arr",arr);
-  var positive = 0;
-  var zero = 0;
-  var negative = 0;
-  for(key in arr){
-    switch(true) {
-      case (arr[key] === 0):
-        zero++;
-        break;
-      case (arr[key] < 0):
-        negative++;
-        break;
-      case (arr[key] > 0):
-        positive++;
-        break;
-    }
+  date = date.split(':');
+  date[0] = parseInt(date[0]);
+  if(apm === 'PM' && date[0] !== 12){
+    date[0] = date[0]+12;
+  } else if(apm === 'AM' && date[0] === 12){
+    date[0] = 0;
   }
 
-  console.log((positive/arr.length).toFixed(3));
-  console.log((negative/arr.length).toFixed(3));
-  console.log((zero/arr.length).toFixed(3));
+  if(date[0]<10){
+    date[0] = '0'+date[0];
+  }
+
+  console.log(date.join(":"));
 };
 
 /*
  *  Helper Functions
  */
 var _parseIntArray = function (arr) {
-  var arr = arr.split(' ');
+  var arr = arr.split(':');
   var length = arr.length;
   for (var i = 0; i < length; i++) {
     arr[i] = parseInt(arr[i]);

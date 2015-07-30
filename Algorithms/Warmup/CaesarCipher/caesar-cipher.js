@@ -41,32 +41,31 @@ process.stdin.on("end", function () {
  *  Do all work here
  */
 var main = function () {
-  var number = _readLine();
-  var arr = _readLine();
-  arr = _parseIntArray(arr);
+  var number = parseInt(_readLine());
+  var arr = _readLine().split('');
+  var shift = parseInt(_readLine());
 
-  //console.log("Num",number);
-  //console.log("Arr",arr);
-  var positive = 0;
-  var zero = 0;
-  var negative = 0;
-  for(key in arr){
-    switch(true) {
-      case (arr[key] === 0):
-        zero++;
-        break;
-      case (arr[key] < 0):
-        negative++;
-        break;
-      case (arr[key] > 0):
-        positive++;
-        break;
+  for(var i = 0; i < number; i++){
+    char = arr[i];
+    var charCode = char.charCodeAt(0);
+    if(charCode >= 65 && charCode <=90){
+      var newCode = charCode+shift;
+      if(newCode > 90){
+        newCode = 64 + (newCode % 90);
+      }
+      char = String.fromCharCode(newCode);
+
+    } else if(charCode >= 97 && charCode <=122){
+      var newCode = charCode+shift;
+      if(newCode > 122){
+        newCode = 96 + (newCode % 122);
+      }
+      char = String.fromCharCode(newCode);
     }
+    arr[i] = char;
   }
 
-  console.log((positive/arr.length).toFixed(3));
-  console.log((negative/arr.length).toFixed(3));
-  console.log((zero/arr.length).toFixed(3));
+  console.log(arr.join(''));
 };
 
 /*
