@@ -1,0 +1,2 @@
+#Best Photo
+Difficulty: Difficult
